@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-primary bg-dark">
+        <p align="center" style="color: aliceblue">Sửa Thông Tin Thành Phố</p>
+    </nav>
+
+    <div>
+        <h2>Form Sửa Thông Tin Thành Phố</h2>
+    </div>
+    <div th:if="${message}" th:text="${message}"></div>
+
+    <form action="/edit-city" th:object="${city}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <td> Name:</td>
+                <td><input type="text" th:field="*{name}"/></td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td>
+                    <select name="country">
+                        <option th:each="c : ${countries}"
+                                th:value="${c.id}"
+                                th:text="${c.name}"
+                                th:selected="(${c.id} == *{country.id})"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td> Dân số:</td>
+                <td><input type="text" th:field="*{population}"/></td>
+            </tr>
+            <tr>
+                <td> Diện tích:</td>
+                <td><input type="text" th:field="*{acreage}"/></td>
+            </tr>
+            <tr>
+                <td> GDP:</td>
+                <td><input type="text" th:field="*{gdp}"/></td>
+            </tr>
+            <tr>
+                <td> Giới thiệu:</td>
+                <td><textarea th:field="*{introduce}"></textarea></td>
+            </tr>
+            <tr>
+                <td><button><a href="/home">Thoát</a></button></td>
+                <td><input type="submit" value="Cập Nhật Thành Phố"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
